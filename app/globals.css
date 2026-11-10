@@ -1,0 +1,47 @@
+:root {
+  color: #172421;
+  background: #f4f7f5;
+  font: 16px/1.55 system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+.shell { max-width: 42rem; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+.brand { font-weight: 800; font-size: 1.3rem; margin-bottom: 2rem; }
+.step { color: #3d6158; font-size: .85rem; font-weight: 700; margin: 0 0 .4rem; }
+h1 { font-size: clamp(1.8rem, 7vw, 2.45rem); line-height: 1.15; margin: 0 0 1rem; }
+h2, legend { font-size: 1.1rem; font-weight: 700; }
+.intro { color: #40554e; margin: 0 0 1.3rem; }
+.stack { display: grid; gap: .8rem; }
+textarea { min-width: 0; width: 100%; resize: vertical; padding: .8rem; }
+textarea, .panel { border: 1px solid #bdccc5; border-radius: .75rem; background: #fff; }
+button, textarea { font: inherit; color: inherit; }
+button {
+  min-height: 44px;
+  border: 1px solid transparent;
+  border-radius: .6rem;
+  background: #14574a;
+  color: #fff;
+  padding: .55rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+button:disabled { background: #dce6e1; color: #45564e; cursor: default; }
+.secondary { background: #fff; color: #742e32; border-color: #bdccc5; }
+:focus-visible { outline: 3px solid #247465; outline-offset: 3px; }
+.facts { margin: 0 0 1.25rem; padding: .9rem 1rem; display: grid; gap: .65rem; }
+.facts div { display: grid; grid-template-columns: minmax(7rem, 1fr) 2fr; gap: .5rem; }
+dt { color: #40554e; font-weight: 650; }
+dd { margin: 0; overflow-wrap: anywhere; }
+fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+legend { padding: 0; margin-bottom: .55rem; }
+.option { display: flex; gap: .65rem; padding: .8rem; cursor: pointer; align-items: flex-start; }
+.option:has(input:checked) { border-color: #14574a; background: #eaf4ef; }
+.option input { margin: .35rem 0 0; accent-color: #14574a; }
+.option-amount, .rationale { display: block; color: #40554e; }
+.rationale { margin-top: .25rem; }
+.actions { display: flex; flex-wrap: wrap; gap: .65rem; }
+
+@media (max-width: 360px) {
+  .facts div { grid-template-columns: 1fr; gap: 0; }
+}
