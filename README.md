@@ -28,7 +28,7 @@ Paste complaint -> extract facts -> choose a resolution option -> review approva
 Requirements: Node 18+, a PayPal developer account with a sandbox app.
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/janackeh/resolve
 cd resolve
 npm install
 cp .env.example .env.local
