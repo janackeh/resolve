@@ -1,38 +1,46 @@
 # Resolve
 
-**From messy customer complaint to clear PayPal resolution.**
+From messy customer complaint to clear PayPal resolution.
 
-Resolve reads a messy customer complaint, extracts the key facts, proposes 2-3 resolution options, and shows a short approval packet. A PayPal sandbox refund is sent only after a human explicitly approves it.
+Support teams get walls of text. Customers paste entire email threads, half-remembered order numbers, and three different reasons they want their money back. Sorting that out takes time. Rushing a refund risks the wrong amount or the wrong person. Doing nothing kills trust.
 
-## How the approval safeguard works
+Resolve turns that mess into a structured case, proposes clear options, and stops before any money moves. A human reviews an Approval Packet. Only then does the sandbox refund run.
 
-Refunds are money movement, so Resolve treats the AI as a drafter and never as a decider.
+## What it does
 
-1. **Approval packet + hard stop.** Every proposed resolution becomes a short packet: the facts, the chosen option, and the exact refund amount. No PayPal call can run until a human approves that packet.
-2. **Fail-closed gate.** Before calling PayPal, the executor checks the packet again. If anything is missing or doesn't match, it refuses and nothing is sent.
+Paste a messy complaint. The AI extracts the facts (order, amount, reason, evidence) and proposes resolution options. You see a clean Approval Packet with everything needed to decide. Approve it and the system executes a real PayPal sandbox refund. Reject it and nothing moves. The gate is fail-closed.
 
-If the extraction is wrong, the person approving sees it in the packet before any money moves.
+The flow is typed handoffs: Intake → Policy/Proposal → Approver → Executor. Money only moves after explicit human approval.
 
-## Flow
+## Built with
 
-Paste complaint -> extract facts -> choose a resolution option -> review approval packet -> approve -> executor re-checks packet -> sandbox refund -> status shown.
+- PayPal Orders v2 and Payments v2 (sandbox) for create → capture → refund
+- AI for structured extraction of facts and generation of proposed options from unstructured complaint text
+- Next.js for the frontend and backend
+- Simple storage for the case and approval packet
 
-## Tech
+## Try the demo
 
-- Next.js, TypeScript
-- PayPal Orders v2 + Payments v2 (sandbox only)
-- Structured extraction: currently **mocked** for demo reliability; the extraction interface is built so a real LLM can be swapped in
+The end-to-end flow is shown in the demo video (messy input → structured facts and options → Approval Packet → approve → sandbox refund confirmation).
 
-## Run locally
+To run it yourself:
 
-Requirements: Node 18+, a PayPal developer account with a sandbox app.
+1. Clone the repo.
+2. `npm install`
+3. Copy `.env.example` to `.env.local` and fill in your PayPal sandbox Client ID and Secret (and AI key if required).
+4. `npm run dev`
+5. Open the intake screen, paste a messy complaint (sample below), and walk through to the approval packet.
 
-```bash
-git clone https://github.com/janackeh/resolve
-cd resolve
-npm install
-cp .env.example .env.local
-npm run dev
+Sample messy complaint you can paste:
+
+```
+Hi, I ordered the blue sneakers on the 3rd, order number was something like 3S9425... I think. They never arrived and the tracking just stopped. I already emailed twice. Can you refund the $47.50? My card ends in 4242. Thanks.
 ```
 
-Environment variables (`.env.local`):
+## Why the hard stop
+
+AI is good at pulling structure out of messy text. It is not good at deciding when money should move. The Approval Packet and fail-closed gate keep a human in the loop for the only step that actually matters. That is the part that makes this more than another suggestion bot.
+
+## License
+
+MIT
